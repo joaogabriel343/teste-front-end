@@ -1,0 +1,92 @@
+@use '../../styles/tokens' as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 400px;
+  overflow: hidden;
+  background-color: $color-text-strong;
+  isolation: isolate;
+
+  @include from(md) {
+    min-height: 480px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgb(0 0 0 / 72%) 0%, rgb(0 0 0 / 45%) 55%, rgb(0 0 0 / 15%) 100%);
+  }
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  color: $color-white;
+  animation: hero-enter 600ms ease both;
+}
+
+.title {
+  max-width: 14ch;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.2;
+
+  @include from(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+
+  @include from(md) {
+    font-size: 1.5rem;
+  }
+
+  strong {
+    color: $color-primary;
+    font-weight: 700;
+  }
+}
+
+.cta {
+  @include primary-button;
+
+  margin-top: 8px;
+  padding-inline: 32px;
+  border-radius: $radius-md;
+  text-transform: none;
+
+  &:focus-visible {
+    outline-color: $color-white;
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

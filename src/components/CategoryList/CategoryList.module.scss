@@ -1,0 +1,103 @@
+@use '../../styles/tokens' as *;
+
+.section {
+  @include container;
+
+  padding-block: 32px 8px;
+
+  @include from(md) {
+    padding-block: 48px 16px;
+  }
+}
+
+.list {
+  display: grid;
+  grid-auto-columns: 96px;
+  grid-auto-flow: column;
+  gap: 16px;
+  margin-inline: -$gutter-mobile;
+  padding: 4px $gutter-mobile 8px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include from(lg) {
+    grid-auto-columns: unset;
+    grid-auto-flow: unset;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 24px;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+
+  li {
+    scroll-snap-align: start;
+  }
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-md;
+  background: none;
+  cursor: pointer;
+
+  &:hover .iconBox {
+    border-color: $color-divider;
+    transform: translateY(-2px);
+  }
+
+  &:active .iconBox {
+    transform: translateY(0);
+  }
+
+  &[aria-pressed='true'] {
+    .iconBox {
+      border-color: $color-primary;
+      color: $color-primary-strong;
+    }
+
+    .label {
+      color: $color-primary-strong;
+      font-weight: 600;
+    }
+  }
+}
+
+.iconBox {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+  color: $color-text;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  @include from(lg) {
+    width: 112px;
+    height: 112px;
+  }
+}
+
+.label {
+  color: $color-text;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  text-align: center;
+}
