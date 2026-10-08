@@ -1,0 +1,77 @@
+@use '../../styles/tokens' as *;
+
+.nav {
+  display: none;
+  border-top: 1px solid $color-divider;
+
+  &[data-open='true'] {
+    display: block;
+    animation: slide-down $transition-base;
+  }
+
+  @include from(lg) {
+    display: block;
+    border-bottom: 1px solid $color-divider;
+  }
+}
+
+.list {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  padding-block: 8px;
+
+  @include from(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-block: 0;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 4px;
+  color: $color-text;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color $transition-fast;
+
+  @include from(lg) {
+    min-height: 52px;
+  }
+
+  &:hover {
+    color: $color-primary-strong;
+  }
+
+  &:active {
+    color: $color-primary-active;
+  }
+
+  &[data-highlighted='true'] {
+    color: $color-primary-strong;
+    font-weight: 600;
+  }
+}
+
+.linkIcon {
+  color: $color-primary-strong;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
