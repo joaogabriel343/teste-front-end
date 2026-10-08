@@ -1,0 +1,66 @@
+@use '../../styles/tokens' as *;
+
+.section {
+  padding-block: 32px 16px;
+
+  @include from(md) {
+    padding-block: 48px 24px;
+  }
+}
+
+.list {
+  @include container;
+
+  display: grid;
+  grid-auto-columns: 120px;
+  grid-auto-flow: column;
+  gap: 16px;
+  margin-top: 24px;
+  padding-block: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include from(md) {
+    grid-auto-columns: unset;
+    grid-auto-flow: unset;
+    grid-template-columns: repeat(5, minmax(0, 170px));
+    justify-content: space-between;
+    margin-top: 32px;
+    overflow: visible;
+  }
+}
+
+.brand {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-color: $color-surface;
+  color: $color-text;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  @include from(md) {
+    font-size: 1.375rem;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary-strong;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

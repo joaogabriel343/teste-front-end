@@ -1,0 +1,117 @@
+@use '../../styles/tokens' as *;
+
+.footer {
+  background-color: $color-white;
+}
+
+.inner {
+  @include container;
+
+  display: grid;
+  gap: 32px;
+  padding-block: 40px;
+
+  @include from(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+    gap: 48px;
+    padding-block: 56px;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  @include from(md) {
+    grid-column: 1 / -1;
+  }
+
+  @include from(lg) {
+    grid-column: auto;
+  }
+}
+
+.about {
+  max-width: 36ch;
+  color: $color-text;
+  font-size: 0.875rem;
+}
+
+.social {
+  display: flex;
+  gap: 8px;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: $color-surface;
+  color: $color-text;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    background-color: $color-primary-strong;
+    color: $color-white;
+  }
+
+  &:active {
+    background-color: $color-primary-active;
+  }
+}
+
+.columnTitle {
+  color: $color-text;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.links {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.link {
+  display: inline-block;
+  padding-block: 6px;
+  border-radius: $radius-sm;
+  color: $color-text;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-strong;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:active {
+    color: $color-primary-active;
+  }
+}
+
+.bottom {
+  border-top: 1px solid $color-divider;
+  background-color: $color-surface;
+}
+
+.copyright {
+  @include container;
+
+  padding-block: 16px;
+  color: $color-text;
+  font-size: 0.75rem;
+  text-align: center;
+}
