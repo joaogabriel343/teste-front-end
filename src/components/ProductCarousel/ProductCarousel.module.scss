@@ -1,0 +1,120 @@
+@use '../../styles/tokens' as *;
+
+$track-gap-mobile: 16px;
+$track-gap-desktop: 32px;
+$track-gap-wide: 64px;
+
+.carousel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  max-width: $showcase-width;
+  margin-inline: auto;
+
+  @include from(md) {
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    column-gap: 12px;
+    padding-inline: $gutter-mobile;
+  }
+
+  @include from(xxl) {
+    column-gap: 22px;
+  }
+}
+
+.arrow {
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: none;
+  color: $color-text;
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    background-color $transition-fast,
+    opacity $transition-fast;
+
+  @include from(md) {
+    display: grid;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-primary-strong;
+    background-color: $color-surface;
+  }
+
+  &:active:not(:disabled) {
+    background-color: $color-divider;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.track {
+  display: grid;
+  grid-auto-columns: 76%;
+  grid-auto-flow: column;
+  gap: $track-gap-mobile;
+  padding: 16px $gutter-mobile 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: $gutter-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include from(sm) {
+    grid-auto-columns: calc((100% - #{$track-gap-mobile}) / 2);
+  }
+
+  @include from(md) {
+    padding-inline: 8px;
+    scroll-padding-inline: 8px;
+  }
+
+  @include from(lg) {
+    grid-auto-columns: calc((100% - 2 * #{$track-gap-desktop}) / 3);
+    gap: $track-gap-desktop;
+  }
+
+  @include from(xl) {
+    grid-auto-columns: calc((100% - 3 * #{$track-gap-desktop}) / 4);
+  }
+
+  @include from(xxl) {
+    grid-auto-columns: calc((100% - 3 * #{$track-gap-wide}) / 4);
+    gap: $track-gap-wide;
+  }
+}
+
+.item {
+  scroll-snap-align: start;
+}
+
+.skeleton {
+  height: 480px;
+  border-radius: $radius-md;
+  background: linear-gradient(90deg, $color-surface 0%, $color-white 50%, $color-surface 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}

@@ -1,0 +1,40 @@
+@use '../../styles/tokens' as *;
+
+.wrapper {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  color: $color-primary;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  text-align: center;
+
+  @include from(md) {
+    gap: 40px;
+    padding-inline: 32px;
+    font-size: 2rem;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1 1 0;
+    height: 1px;
+    background-color: $color-divider;
+  }
+}
+
+.action {
+  font-size: 1rem;
+}

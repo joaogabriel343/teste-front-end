@@ -1,0 +1,49 @@
+@use '../../styles/tokens' as *;
+
+.showcase {
+  padding-block: 32px 16px;
+  scroll-margin-top: 16px;
+
+  @include from(md) {
+    padding-block: 48px 24px;
+  }
+}
+
+.viewAll {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+  color: $color-primary-strong;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-hover;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:active {
+    color: $color-primary-active;
+  }
+}
+
+.feedback {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-block: 48px;
+  color: $color-text;
+  text-align: center;
+}
+
+.feedbackButton {
+  @include primary-button;
+
+  border-radius: $radius-md;
+  text-transform: none;
+}
