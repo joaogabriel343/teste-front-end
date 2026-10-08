@@ -1,5 +1,7 @@
 @use '../../styles/tokens' as *;
 
+@include motion-keyframes;
+
 .section {
   @include container;
 
@@ -20,11 +22,13 @@
   }
 
   @include from(xl) {
-    gap: 36px;
+    gap: 12px;
   }
 }
 
 .banner {
+  @include reveal-on-scroll;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -43,7 +47,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 30%) 100%);
+    background: linear-gradient(90deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 35%) 100%);
   }
 
   &:hover .image {
@@ -71,8 +75,8 @@
   color: $color-white;
 
   @include from(lg) {
-    gap: 16px;
-    padding: 40px;
+    gap: 12px;
+    padding: 44px;
   }
 }
 
@@ -91,32 +95,15 @@
 }
 
 .cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  margin-top: 8px;
-  padding: 10px 32px;
-  border-radius: $radius-md;
-  background-color: $color-white;
-  color: $color-text;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
+  @include accent-button;
+
+  min-width: 144px;
+  min-height: 48px;
+  margin-top: 20px;
+  padding-inline: 28px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition:
-    background-color $transition-fast,
-    color $transition-fast,
-    transform $transition-fast;
-
-  &:hover {
-    background-color: $color-surface;
-    color: $color-primary-strong;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
 
   &:focus-visible {
     outline-color: $color-white;

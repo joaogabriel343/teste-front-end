@@ -1,7 +1,7 @@
 @use '../../styles/tokens' as *;
 
 .footer {
-  background-color: $color-white;
+  background-color: $color-footer;
 }
 
 .inner {
@@ -16,9 +16,9 @@
   }
 
   @include from(lg) {
-    grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-    gap: 48px;
-    padding-block: 56px;
+    grid-template-columns: minmax(0, 418px) repeat(3, minmax(0, 1fr));
+    gap: 0;
+    padding-block: 40px;
   }
 }
 
@@ -34,7 +34,25 @@
 
   @include from(lg) {
     grid-column: auto;
+    padding-block: 16px;
+    border-right: 1px solid $color-divider;
   }
+}
+
+.column {
+  @include from(lg) {
+    padding-top: 40px;
+  }
+}
+
+.brand + .column {
+  @include from(lg) {
+    padding-left: 84px;
+  }
+}
+
+.brandLogo {
+  font-size: 2rem;
 }
 
 .about {
@@ -45,7 +63,8 @@
 
 .social {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  margin-left: -10px;
 }
 
 .socialLink {
@@ -54,25 +73,24 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-color: $color-surface;
   color: $color-text;
   transition:
     background-color $transition-fast,
     color $transition-fast;
 
   &:hover {
-    background-color: $color-primary-strong;
-    color: $color-white;
+    background-color: $color-white;
+    color: $color-primary;
   }
 
   &:active {
-    background-color: $color-primary-active;
+    background-color: $color-divider;
   }
 }
 
 .columnTitle {
-  color: $color-text;
-  font-weight: 700;
+  color: $color-text-muted;
+  font-weight: 600;
   font-size: 1rem;
 }
 
@@ -84,9 +102,9 @@
 
 .link {
   display: inline-block;
-  padding-block: 6px;
+  padding-block: 4px;
   border-radius: $radius-sm;
-  color: $color-text;
+  color: $color-text-muted;
   font-size: 0.875rem;
   text-decoration: none;
   transition: color $transition-fast;
@@ -103,8 +121,7 @@
 }
 
 .bottom {
-  border-top: 1px solid $color-divider;
-  background-color: $color-surface;
+  background-color: $color-white;
 }
 
 .copyright {

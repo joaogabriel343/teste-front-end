@@ -11,6 +11,11 @@ HTMLDialogElement.prototype.close = function close(this: HTMLDialogElement) {
   this.dispatchEvent(new Event('close'))
 }
 
+window.scrollTo = () => undefined
+Element.prototype.scrollIntoView = () => undefined
+
 afterEach(() => {
   cleanup()
+  window.localStorage.clear()
+  window.history.replaceState(null, '', '/')
 })

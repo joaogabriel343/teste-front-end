@@ -1,0 +1,7 @@
+.main {
+  min-height: 50vh;
+
+  &:focus {
+    outline: none;
+  }
+}

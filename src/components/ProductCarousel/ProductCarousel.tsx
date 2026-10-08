@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { useCarousel } from '../../hooks/useCarousel'
 import type { CatalogProduct } from '../../types/product'
+import { staggerDelay } from '../../utils/staggerDelay'
 import { Icon } from '../Icon/Icon'
 import { ProductCard } from '../ProductCard/ProductCard'
 import styles from './ProductCarousel.module.scss'
@@ -28,7 +29,7 @@ export function ProductCarousel({ products, isLoading, onSelectProduct }: Produc
         disabled={!canScrollPrevious}
         onClick={() => scrollByPage('previous')}
       >
-        <Icon name="chevronLeft" size={36} strokeWidth={2} />
+        <Icon name="chevronLeft" size={18} strokeWidth={2} />
       </button>
       <ul id={trackId} ref={trackRef} className={styles.track} aria-busy={isLoading}>
         {isLoading
@@ -37,8 +38,8 @@ export function ProductCarousel({ products, isLoading, onSelectProduct }: Produc
                 <div className={styles.skeleton} />
               </li>
             ))
-          : products.map((product) => (
-              <li key={product.id} className={styles.item}>
+          : products.map((product, index) => (
+              <li key={product.id} className={styles.item} style={staggerDelay(index)}>
                 <ProductCard product={product} onSelect={onSelectProduct} />
               </li>
             ))}
@@ -56,7 +57,7 @@ export function ProductCarousel({ products, isLoading, onSelectProduct }: Produc
         disabled={!canScrollNext}
         onClick={() => scrollByPage('next')}
       >
-        <Icon name="chevronRight" size={36} strokeWidth={2} />
+        <Icon name="chevronRight" size={18} strokeWidth={2} />
       </button>
     </div>
   )

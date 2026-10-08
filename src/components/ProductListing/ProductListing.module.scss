@@ -1,0 +1,44 @@
+@use '../../styles/tokens' as *;
+
+@include motion-keyframes;
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.count {
+  color: $color-text-muted;
+}
+
+.sort {
+  width: 100%;
+
+  @include from(sm) {
+    width: 220px;
+  }
+}
+
+.grid > li {
+  @include rise-in;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 24px;
+  padding: 4px;
+}
+
+.skeleton {
+  @include skeleton-block(480px);
+}

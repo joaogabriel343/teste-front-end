@@ -2,6 +2,7 @@
 
 .header {
   background-color: $color-white;
+  view-transition-name: site-header;
 }
 
 .main {
@@ -18,10 +19,10 @@
 
   @include from(lg) {
     grid-template-areas: 'logo search shortcuts';
-    grid-template-columns: auto minmax(0, 708px) auto;
+    grid-template-columns: auto minmax(0, 627px) auto;
     justify-content: space-between;
     gap: 32px;
-    padding-block: 20px;
+    padding-block: 12px;
   }
 }
 
@@ -71,6 +72,10 @@
   @include from(md) {
     gap: 8px;
   }
+
+  @include from(lg) {
+    gap: 22px;
+  }
 }
 
 .shortcut {
@@ -81,14 +86,22 @@
   height: 44px;
   border-radius: $radius-sm;
   color: $color-text;
-  transition: color $transition-fast;
+  transition:
+    color $transition-fast,
+    transform $transition-fast;
 
   &:hover {
     color: $color-primary-strong;
+    transform: translateY(-2px);
   }
 
   &:active {
     color: $color-primary-active;
+    transform: translateY(0) scale(0.92);
+  }
+
+  &[aria-current='page'] {
+    color: $color-primary-strong;
   }
 
   @include from(md) {
@@ -111,4 +124,19 @@
   font-weight: 600;
   font-size: 0.6875rem;
   line-height: 1;
+  animation: badge-pop 400ms $ease-out both;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.4);
+  }
+
+  60% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

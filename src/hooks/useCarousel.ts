@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion } from '../utils/prefersReducedMotion'
 
-export type ScrollDirection = 'previous' | 'next'
-
-function prefersReducedMotion(): boolean {
-  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
-}
+type ScrollDirection = 'previous' | 'next'
 
 export function useCarousel<TrackElement extends HTMLElement>(itemCount: number) {
   const trackRef = useRef<TrackElement>(null)

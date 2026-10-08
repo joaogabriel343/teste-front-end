@@ -1,5 +1,5 @@
 import type { ProductCategory } from '../types/product'
-import { normalizeText } from './normalizeText'
+import { containsAnyWord } from './normalizeText'
 
 const CATEGORY_KEYWORDS: Record<ProductCategory, string[]> = {
   celular: ['iphone', 'celular', 'smartphone', 'galaxy', 'motorola', 'xiaomi'],
@@ -10,9 +10,8 @@ const CATEGORY_KEYWORDS: Record<ProductCategory, string[]> = {
 }
 
 export function inferCategory(productName: string): ProductCategory | null {
-  const words = normalizeText(productName).split(/[^a-z0-9]+/)
   const match = (Object.keys(CATEGORY_KEYWORDS) as ProductCategory[]).find((category) =>
-    CATEGORY_KEYWORDS[category].some((keyword) => words.includes(keyword)),
+    containsAnyWord(productName, CATEGORY_KEYWORDS[category]),
   )
   return match ?? null
 }

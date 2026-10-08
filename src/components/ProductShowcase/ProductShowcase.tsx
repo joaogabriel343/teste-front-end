@@ -64,6 +64,7 @@ export function ProductShowcase({
 
     return (
       <ProductCarousel
+        key={activeTabId}
         products={visibleProducts}
         isLoading={productsState.status === 'loading'}
         onSelectProduct={onSelectProduct}

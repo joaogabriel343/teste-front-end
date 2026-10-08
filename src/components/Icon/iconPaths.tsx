@@ -39,6 +39,13 @@ export const ICON_PATHS = {
       <circle cx="12" cy="7" r="4" />
     </>
   ),
+  userCircle: (
+    <>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="10" r="3" />
+      <path d="M6.17 18.85a6 6 0 0 1 11.66 0" />
+    </>
+  ),
   cart: (
     <>
       <circle cx="9" cy="21" r="1" />
@@ -113,6 +120,25 @@ export const ICON_PATHS = {
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect x="2" y="9" width="4" height="12" />
       <circle cx="4" cy="4" r="2" />
+    </>
+  ),
+  book: (
+    <>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    </>
+  ),
+  trash: (
+    <>
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+    </>
+  ),
+  check: <polyline points="20 6 9 17 4 12" />,
+  mail: (
+    <>
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <polyline points="22 6 12 13 2 6" />
     </>
   ),
 } satisfies Record<string, ReactNode>

@@ -10,7 +10,7 @@
   isolation: isolate;
 
   @include from(md) {
-    min-height: 480px;
+    min-height: 387px;
   }
 
   &::after {
@@ -18,7 +18,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(90deg, rgb(0 0 0 / 72%) 0%, rgb(0 0 0 / 45%) 55%, rgb(0 0 0 / 15%) 100%);
+    background: linear-gradient(90deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 45%) 45%, rgb(0 0 0 / 30%) 100%);
   }
 }
 
@@ -29,6 +29,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: hero-zoom 1600ms $ease-out both;
 }
 
 .content {
@@ -39,50 +40,71 @@
   align-items: flex-start;
   gap: 16px;
   color: $color-white;
-  animation: hero-enter 600ms ease both;
+
+  > * {
+    animation: hero-enter 700ms $ease-out both;
+  }
+
+  > :nth-child(2) {
+    animation-delay: 120ms;
+  }
+
+  > :nth-child(3) {
+    animation-delay: 240ms;
+  }
 }
 
 .title {
-  max-width: 14ch;
-  font-weight: 700;
+  max-width: 600px;
+  font-weight: 600;
   font-size: 2rem;
-  line-height: 1.2;
+  line-height: 1.1;
 
   @include from(md) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 
   @include from(md) {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   strong {
-    color: $color-primary;
-    font-weight: 700;
+    color: $color-accent;
+    font-weight: 600;
   }
 }
 
 .cta {
-  @include primary-button;
+  @include accent-button;
 
-  margin-top: 8px;
-  padding-inline: 32px;
-  border-radius: $radius-md;
-  text-transform: none;
+  min-width: 205px;
+  min-height: 50px;
+  margin-top: 24px;
+  font-weight: 500;
 
   &:focus-visible {
     outline-color: $color-white;
   }
 }
 
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.06);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
 @keyframes hero-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(20px);
   }
 
   to {

@@ -10,7 +10,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <Logo />
+          <Logo className={styles.brandLogo} />
           <p className={styles.about}>
             Tecnologia, casa e estilo em um só lugar, com entrega para todo o Brasil e atendimento de verdade.
           </p>

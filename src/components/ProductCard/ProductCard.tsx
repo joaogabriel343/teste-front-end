@@ -1,17 +1,20 @@
 import type { CatalogProduct } from '../../types/product'
 import { formatInstallment, formatPrice } from '../../utils/formatPrice'
+import { FavoriteButton } from '../FavoriteButton/FavoriteButton'
 import styles from './ProductCard.module.scss'
 
 interface ProductCardProps {
   product: CatalogProduct
   onSelect: (product: CatalogProduct) => void
+  showFavoriteButton?: boolean
 }
 
-export function ProductCard({ product, onSelect }: ProductCardProps) {
+export function ProductCard({ product, onSelect, showFavoriteButton = false }: ProductCardProps) {
   const { productName, photo, price } = product
 
   return (
     <article className={styles.card} onClick={() => onSelect(product)}>
+      {showFavoriteButton && <FavoriteButton product={product} className={styles.favorite} />}
       <div className={styles.imageWrapper}>
         <img
           className={styles.image}

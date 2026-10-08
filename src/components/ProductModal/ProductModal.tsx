@@ -1,31 +1,32 @@
 import { useEffect, useId, useRef, useState } from 'react'
+import { useBuyProduct } from '../../hooks/useBuyProduct'
+import { useUi } from '../../store/uiContext'
 import type { CatalogProduct } from '../../types/product'
-import { formatInstallment, formatPrice } from '../../utils/formatPrice'
+import { formatPrice } from '../../utils/formatPrice'
 import { Icon } from '../Icon/Icon'
 import { QuantitySelector } from '../QuantitySelector/QuantitySelector'
 import styles from './ProductModal.module.scss'
-
-interface ProductModalProps {
-  product: CatalogProduct | null
-  onClose: () => void
-  onAddToCart: (product: CatalogProduct, quantity: number) => void
-}
 
 interface ProductDetailsProps {
   product: CatalogProduct
   titleId: string
   onClose: () => void
-  onAddToCart: (product: CatalogProduct, quantity: number) => void
 }
 
-function ProductDetails({ product, titleId, onClose, onAddToCart }: ProductDetailsProps) {
+function ProductDetails({ product, titleId, onClose }: ProductDetailsProps) {
   const [quantity, setQuantity] = useState(1)
+  const buyProduct = useBuyProduct()
   const { productName, descriptionShort, photo, price } = product
+
+  function handleBuy() {
+    buyProduct(product, quantity)
+    onClose()
+  }
 
   return (
     <div className={styles.content}>
       <button type="button" className={styles.closeButton} aria-label="Fechar" onClick={onClose}>
-        <Icon name="close" size={28} strokeWidth={2} />
+        <Icon name="close" size={20} strokeWidth={2} />
       </button>
       <div className={styles.imageWrapper}>
         <img className={styles.image} src={photo} alt={productName} width={247} height={228} />
@@ -35,11 +36,13 @@ function ProductDetails({ product, titleId, onClose, onAddToCart }: ProductDetai
           {productName}
         </h2>
         <p className={styles.price}>{formatPrice(price)}</p>
-        <p className={styles.installment}>{formatInstallment(price)}</p>
         <p className={styles.description}>{descriptionShort}</p>
+        <a href={`/produto/${product.id}`} className={styles.detailsLink} onClick={onClose}>
+          Veja mais detalhes do produto <Icon name="chevronRight" size={12} strokeWidth={2.5} />
+        </a>
         <div className={styles.actions}>
           <QuantitySelector value={quantity} onChange={setQuantity} />
-          <button type="button" className={styles.buyButton} onClick={() => onAddToCart(product, quantity)}>
+          <button type="button" className={styles.buyButton} onClick={handleBuy}>
             Comprar
           </button>
         </div>
@@ -48,7 +51,8 @@ function ProductDetails({ product, titleId, onClose, onAddToCart }: ProductDetai
   )
 }
 
-export function ProductModal({ product, onClose, onAddToCart }: ProductModalProps) {
+export function ProductModal() {
+  const { selectedProduct, closeProduct } = useUi()
   const dialogRef = useRef<HTMLDialogElement>(null)
   const titleId = useId()
 
@@ -56,28 +60,22 @@ export function ProductModal({ product, onClose, onAddToCart }: ProductModalProp
     const dialog = dialogRef.current
     if (!dialog) return
 
-    if (product && !dialog.open) dialog.showModal()
-    if (!product && dialog.open) dialog.close()
-  }, [product])
+    if (selectedProduct && !dialog.open) dialog.showModal()
+    if (!selectedProduct && dialog.open) dialog.close()
+  }, [selectedProduct])
 
   return (
     <dialog
       ref={dialogRef}
       className={styles.dialog}
       aria-labelledby={titleId}
-      onClose={onClose}
+      onClose={closeProduct}
       onClick={(event) => {
-        if (event.target === event.currentTarget) onClose()
+        if (event.target === event.currentTarget) closeProduct()
       }}
     >
-      {product && (
-        <ProductDetails
-          key={product.id}
-          product={product}
-          titleId={titleId}
-          onClose={onClose}
-          onAddToCart={onAddToCart}
-        />
+      {selectedProduct && (
+        <ProductDetails key={selectedProduct.id} product={selectedProduct} titleId={titleId} onClose={closeProduct} />
       )}
     </dialog>
   )

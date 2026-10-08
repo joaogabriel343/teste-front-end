@@ -13,15 +13,69 @@
 }
 
 .toast {
-  max-width: 480px;
-  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 560px;
+  padding: 10px 8px 10px 16px;
   border-radius: $radius-md;
   background-color: $color-text-strong;
   color: $color-white;
+  box-shadow: $shadow-card-hover;
+  pointer-events: auto;
+  animation: toast-enter $transition-base both;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: $color-success-on-dark;
+}
+
+.text {
   font-weight: 500;
   font-size: 0.875rem;
-  box-shadow: $shadow-card-hover;
-  animation: toast-enter $transition-base both;
+}
+
+.action {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border-radius: $radius-sm;
+  color: $color-white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    background-color: rgb(255 255 255 / 12%);
+  }
+
+  &:focus-visible {
+    outline-color: $color-white;
+  }
+}
+
+.close {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: none;
+  color: $color-white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(255 255 255 / 12%);
+  }
+
+  &:focus-visible {
+    outline-color: $color-white;
+  }
 }
 
 @keyframes toast-enter {

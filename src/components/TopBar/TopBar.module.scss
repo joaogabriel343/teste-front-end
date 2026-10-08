@@ -1,28 +1,29 @@
 @use '../../styles/tokens' as *;
 
 .topBar {
-  border-bottom: 1px solid $color-divider;
+  @include container;
 }
 
 .benefits {
-  @include container;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px 20px;
   padding-block: 8px;
   color: $color-text-muted;
+  border-bottom: 1px solid $color-divider;
   font-size: 0.75rem;
 
   @include from(md) {
     gap: 48px;
-    padding-block: 10px;
-    font-size: 0.875rem;
+  }
+
+  @include from(lg) {
+    gap: 120px;
   }
 
   strong {
-    color: $color-primary-strong;
+    color: $color-primary;
     font-weight: 600;
   }
 }
@@ -35,5 +36,5 @@
 
 .icon {
   flex-shrink: 0;
-  color: $color-text;
+  color: $color-text-muted;
 }

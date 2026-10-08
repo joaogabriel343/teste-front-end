@@ -1,41 +1,39 @@
 @use '../../styles/tokens' as *;
 
+@include motion-keyframes;
+
 $track-gap-mobile: 16px;
-$track-gap-desktop: 32px;
-$track-gap-wide: 64px;
+$track-gap-desktop: 18px;
 
 .carousel {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  max-width: $showcase-width;
+  max-width: 1392px;
   margin-inline: auto;
 
   @include from(md) {
-    grid-template-columns: 40px minmax(0, 1fr) 40px;
-    column-gap: 12px;
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    column-gap: 8px;
     padding-inline: $gutter-mobile;
-  }
-
-  @include from(xxl) {
-    column-gap: 22px;
   }
 }
 
 .arrow {
   display: none;
   place-items: center;
-  width: 40px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 0;
-  border-radius: $radius-sm;
-  background: none;
+  border-radius: 50%;
+  background-color: $color-white;
   color: $color-text;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
   cursor: pointer;
   transition:
     color $transition-fast,
-    background-color $transition-fast,
+    box-shadow $transition-fast,
     opacity $transition-fast;
 
   @include from(md) {
@@ -43,16 +41,16 @@ $track-gap-wide: 64px;
   }
 
   &:hover:not(:disabled) {
-    color: $color-primary-strong;
-    background-color: $color-surface;
+    color: $color-primary;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 25%);
   }
 
   &:active:not(:disabled) {
-    background-color: $color-divider;
+    transform: scale(0.94);
   }
 
   &:disabled {
-    opacity: 0.3;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
@@ -78,8 +76,8 @@ $track-gap-wide: 64px;
   }
 
   @include from(md) {
-    padding-inline: 8px;
-    scroll-padding-inline: 8px;
+    padding-inline: 7px;
+    scroll-padding-inline: 7px;
   }
 
   @include from(lg) {
@@ -90,31 +88,14 @@ $track-gap-wide: 64px;
   @include from(xl) {
     grid-auto-columns: calc((100% - 3 * #{$track-gap-desktop}) / 4);
   }
-
-  @include from(xxl) {
-    grid-auto-columns: calc((100% - 3 * #{$track-gap-wide}) / 4);
-    gap: $track-gap-wide;
-  }
 }
 
 .item {
+  @include rise-in;
+
   scroll-snap-align: start;
 }
 
 .skeleton {
-  height: 480px;
-  border-radius: $radius-md;
-  background: linear-gradient(90deg, $color-surface 0%, $color-white 50%, $color-surface 100%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  from {
-    background-position: 100% 0;
-  }
-
-  to {
-    background-position: -100% 0;
-  }
+  @include skeleton-block(480px);
 }

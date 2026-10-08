@@ -3,7 +3,7 @@ const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 })
 
-export const INSTALLMENT_COUNT = 2
+const INSTALLMENT_COUNT = 2
 
 export function formatPrice(priceInCents: number): string {
   return currencyFormatter.format(priceInCents / 100)

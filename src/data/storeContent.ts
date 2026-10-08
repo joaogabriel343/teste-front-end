@@ -10,14 +10,14 @@ export interface LinkItem {
   href: string
 }
 
-export interface StoreBenefit {
+interface StoreBenefit {
   icon: IconName
   highlight: string
   text: string
   highlightFirst: boolean
 }
 
-export interface StoreCategory {
+interface StoreCategory {
   id: string
   label: string
   icon: IconName
@@ -28,15 +28,24 @@ export interface ShowcaseTab {
   label: string
 }
 
-export interface PartnerBanner {
+interface PartnerBanner {
   id: string
+  name: string
   title: string
   description: string
+  content: string[]
   cta: LinkItem
   image: { small: string; large: string; alt: string }
 }
 
-export interface FooterColumn {
+interface Brand {
+  id: string
+  label: string
+  href: string
+  keywords: string[]
+}
+
+interface FooterColumn {
   title: string
   links: LinkItem[]
 }
@@ -50,14 +59,14 @@ export const STORE_BENEFITS: StoreBenefit[] = [
 export const USER_SHORTCUTS: Array<LinkItem & { icon: IconName }> = [
   { label: 'Meus pedidos', href: '/pedidos', icon: 'package' },
   { label: 'Favoritos', href: '/favoritos', icon: 'heart' },
-  { label: 'Minha conta', href: '/conta', icon: 'user' },
+  { label: 'Minha conta', href: '/conta', icon: 'userCircle' },
 ]
 
 export const MAIN_NAVIGATION: Array<LinkItem & { highlighted?: boolean; icon?: IconName }> = [
   { label: 'Todas categorias', href: '/categorias' },
-  { label: 'Supermercado', href: '/supermercado' },
-  { label: 'Livros', href: '/livros' },
-  { label: 'Moda', href: '/moda' },
+  { label: 'Supermercado', href: '/departamentos/supermercado' },
+  { label: 'Livros', href: '/departamentos/livros' },
+  { label: 'Moda', href: '/departamentos/moda' },
   { label: 'Lançamentos', href: '/lancamentos' },
   { label: 'Ofertas do dia', href: '/ofertas', highlighted: true },
   { label: 'Assinatura', href: '/assinatura', icon: 'crown' },
@@ -73,6 +82,10 @@ export const STORE_CATEGORIES: StoreCategory[] = [
   { id: 'moda', label: 'Moda', icon: 'shirt' },
 ]
 
+export const DEPARTMENTS: StoreCategory[] = [...STORE_CATEGORIES, { id: 'livros', label: 'Livros', icon: 'book' }]
+
+export const TECHNOLOGY_DEPARTMENT_ID = 'tecnologia'
+
 export const SHOWCASE_TABS: ShowcaseTab[] = [
   { id: 'celular', label: 'Celular' },
   { id: 'acessorios', label: 'Acessórios' },
@@ -85,8 +98,13 @@ export const SHOWCASE_TABS: ShowcaseTab[] = [
 export const PARTNER_BANNERS: PartnerBanner[] = [
   {
     id: 'moda',
+    name: 'Marcas parceiras',
     title: 'Parceiros',
     description: 'Marcas parceiras com condições exclusivas para você.',
+    content: [
+      'Reunimos marcas parceiras que compartilham o nosso cuidado com qualidade, atendimento e entrega.',
+      'Clientes cadastrados na newsletter recebem primeiro as campanhas e os cupons exclusivos de cada parceiro.',
+    ],
     cta: { label: 'Confira', href: '/parceiros/moda' },
     image: {
       small: partnerFashion640,
@@ -96,8 +114,13 @@ export const PARTNER_BANNERS: PartnerBanner[] = [
   },
   {
     id: 'lojas',
+    name: 'Lojas parceiras',
     title: 'Parceiros',
     description: 'Lojas selecionadas com entrega rápida para todo o Brasil.',
+    content: [
+      'As lojas parceiras passam por uma curadoria de prazos, estoque e satisfação dos clientes.',
+      'Todos os pedidos feitos aqui contam com a mesma política de troca e o mesmo suporte da Econverse.',
+    ],
     cta: { label: 'Confira', href: '/parceiros/lojas' },
     image: {
       small: partnerStore640,
@@ -107,12 +130,12 @@ export const PARTNER_BANNERS: PartnerBanner[] = [
   },
 ]
 
-export const FEATURED_BRANDS: LinkItem[] = [
-  { label: 'Apple', href: '/marcas/apple' },
-  { label: 'Samsung', href: '/marcas/samsung' },
-  { label: 'Motorola', href: '/marcas/motorola' },
-  { label: 'Xiaomi', href: '/marcas/xiaomi' },
-  { label: 'LG', href: '/marcas/lg' },
+export const FEATURED_BRANDS: Brand[] = [
+  { id: 'apple', label: 'Apple', href: '/marcas/apple', keywords: ['apple', 'iphone', 'ipad', 'macbook'] },
+  { id: 'samsung', label: 'Samsung', href: '/marcas/samsung', keywords: ['samsung', 'galaxy'] },
+  { id: 'motorola', label: 'Motorola', href: '/marcas/motorola', keywords: ['motorola', 'moto'] },
+  { id: 'xiaomi', label: 'Xiaomi', href: '/marcas/xiaomi', keywords: ['xiaomi', 'redmi', 'poco'] },
+  { id: 'lg', label: 'LG', href: '/marcas/lg', keywords: ['lg'] },
 ]
 
 export const FOOTER_COLUMNS: FooterColumn[] = [

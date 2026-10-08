@@ -1,0 +1,45 @@
+@use '../styles/tokens' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message {
+  padding-bottom: 16px;
+  border-bottom: 1px solid $color-divider;
+  font-size: 0.875rem;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.messageSubject {
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.messageText {
+  margin-top: 6px;
+  color: $color-text;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,16 @@
+@use '../../styles/tokens' as *;
+
+.grid {
+  display: grid;
+  gap: 16px;
+
+  @include from(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fullRow {
+  @include from(md) {
+    grid-column: 1 / -1;
+  }
+}

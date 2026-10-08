@@ -1,0 +1,80 @@
+@use '../styles/tokens' as *;
+
+.activeBox {
+  margin-bottom: 24px;
+}
+
+.activeText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plans {
+  display: grid;
+  gap: 24px;
+
+  @include from(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include from(lg) {
+    max-width: 880px;
+  }
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border: 1px solid $color-divider;
+  border-radius: $radius-lg;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-border;
+  }
+
+  &[data-active='true'] {
+    border: 2px solid $color-primary-strong;
+  }
+}
+
+.planName {
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.planPrice {
+  color: $color-text;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.period {
+  color: $color-text-muted;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.benefits {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $color-text;
+}
+
+.benefitIcon {
+  flex-shrink: 0;
+  color: $color-success;
+}

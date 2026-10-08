@@ -1,6 +1,10 @@
 @use '../../styles/tokens' as *;
 
+@include motion-keyframes;
+
 .showcase {
+  @include reveal-on-scroll;
+
   padding-block: 32px 16px;
   scroll-margin-top: 16px;
 
@@ -11,10 +15,10 @@
 
 .viewAll {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 2px 8px;
   border-radius: $radius-sm;
-  color: $color-primary-strong;
-  font-weight: 500;
+  color: $color-text;
+  font-weight: 600;
   text-decoration: none;
   transition: color $transition-fast;
 

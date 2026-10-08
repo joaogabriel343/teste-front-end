@@ -1,5 +1,7 @@
 @use '../../styles/tokens' as *;
 
+@include motion-keyframes;
+
 .section {
   padding-block: 32px 16px;
 
@@ -16,7 +18,7 @@
   grid-auto-flow: column;
   gap: 16px;
   margin-top: 24px;
-  padding-block: 4px;
+  padding-block: 8px 16px;
   overflow-x: auto;
   scrollbar-width: none;
 
@@ -27,7 +29,7 @@
   @include from(md) {
     grid-auto-columns: unset;
     grid-auto-flow: unset;
-    grid-template-columns: repeat(5, minmax(0, 170px));
+    grid-template-columns: repeat(5, minmax(0, 210px));
     justify-content: space-between;
     margin-top: 32px;
     overflow: visible;
@@ -35,32 +37,34 @@
 }
 
 .brand {
+  @include reveal-on-scroll;
+
+  position: relative;
   display: grid;
   place-items: center;
   aspect-ratio: 1;
-  border: 1px solid transparent;
   border-radius: 50%;
-  background-color: $color-surface;
-  color: $color-text;
-  font-weight: 700;
-  font-size: 1.125rem;
+  background-color: $color-white;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
   text-decoration: none;
   transition:
-    border-color $transition-fast,
-    color $transition-fast,
+    box-shadow $transition-fast,
     transform $transition-fast;
 
-  @include from(md) {
-    font-size: 1.375rem;
-  }
-
   &:hover {
-    border-color: $color-primary;
-    color: $color-primary-strong;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 18%);
     transform: translateY(-2px);
   }
 
   &:active {
     transform: translateY(0);
+  }
+}
+
+.brandLogo {
+  font-size: 1rem;
+
+  @include from(md) {
+    font-size: 1.25rem;
   }
 }

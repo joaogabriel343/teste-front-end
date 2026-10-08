@@ -19,16 +19,16 @@
 
   @include from(md) {
     margin-inline: 0;
-    padding-inline: 2px;
-  }
-
-  @include from(xl) {
-    padding-inline: 16px;
+    padding-inline: 0;
   }
 }
 
 .item {
   flex: 1 0 auto;
+
+  @include from(md) {
+    flex: 1 1 0;
+  }
 
   & + & {
     margin-left: -1px;
@@ -52,9 +52,19 @@
     color $transition-fast,
     background-color $transition-fast;
 
+  @include from(md) {
+    min-width: 0;
+    padding-inline: 8px;
+    font-size: 0.875rem;
+  }
+
+  @include from(lg) {
+    font-size: 0.9375rem;
+  }
+
   &:hover {
     background-color: $color-surface;
-    color: $color-primary-strong;
+    color: $color-primary;
   }
 
   &:active {
@@ -67,7 +77,7 @@
   }
 
   &[aria-pressed='true'] {
-    color: $color-primary-strong;
-    font-weight: 700;
+    color: $color-primary;
+    font-weight: 600;
   }
 }

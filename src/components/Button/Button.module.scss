@@ -1,0 +1,88 @@
+@use '../../styles/tokens' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 24px;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    border-color: transparent;
+    background-color: $color-divider;
+    color: $color-text-muted;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background-color: $color-primary-strong;
+  color: $color-white;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-hover;
+  }
+
+  &:active:not(:disabled) {
+    background-color: $color-primary-active;
+  }
+}
+
+.secondary {
+  border-color: $color-border;
+  background-color: $color-white;
+  color: $color-text;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary-strong;
+    color: $color-primary-strong;
+  }
+
+  &:active:not(:disabled) {
+    background-color: $color-surface;
+  }
+}
+
+.danger {
+  border-color: $color-danger;
+  background-color: $color-white;
+  color: $color-danger;
+
+  &:hover:not(:disabled) {
+    background-color: $color-danger;
+    color: $color-white;
+  }
+}
+
+.ghost {
+  padding-inline: 12px;
+  background-color: transparent;
+  color: $color-text;
+
+  &:hover:not(:disabled) {
+    background-color: $color-surface;
+    color: $color-primary-strong;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
