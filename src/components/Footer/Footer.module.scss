@@ -1,0 +1,134 @@
+@use '../../styles/tokens' as *;
+
+.footer {
+  background-color: $color-footer;
+}
+
+.inner {
+  @include container;
+
+  display: grid;
+  gap: 32px;
+  padding-block: 40px;
+
+  @include from(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 418px) repeat(3, minmax(0, 1fr));
+    gap: 0;
+    padding-block: 40px;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  @include from(md) {
+    grid-column: 1 / -1;
+  }
+
+  @include from(lg) {
+    grid-column: auto;
+    padding-block: 16px;
+    border-right: 1px solid $color-divider;
+  }
+}
+
+.column {
+  @include from(lg) {
+    padding-top: 40px;
+  }
+}
+
+.brand + .column {
+  @include from(lg) {
+    padding-left: 84px;
+  }
+}
+
+.brandLogo {
+  font-size: 2rem;
+}
+
+.about {
+  max-width: 36ch;
+  color: $color-text;
+  font-size: 0.875rem;
+}
+
+.social {
+  display: flex;
+  gap: 4px;
+  margin-left: -10px;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: $color-text;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-primary;
+  }
+
+  &:active {
+    background-color: $color-divider;
+  }
+}
+
+.columnTitle {
+  color: $color-text-muted;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.links {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.link {
+  display: inline-block;
+  padding-block: 4px;
+  border-radius: $radius-sm;
+  color: $color-text-muted;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-strong;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:active {
+    color: $color-primary-active;
+  }
+}
+
+.bottom {
+  background-color: $color-white;
+}
+
+.copyright {
+  @include container;
+
+  padding-block: 16px;
+  color: $color-text;
+  font-size: 0.75rem;
+  text-align: center;
+}

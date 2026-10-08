@@ -1,0 +1,66 @@
+@use '../styles/tokens' as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  border-top: 1px solid $color-divider;
+}
+
+.item {
+  border-bottom: 1px solid $color-divider;
+  interpolate-size: allow-keywords;
+
+  &::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height $transition-base,
+      content-visibility $transition-base allow-discrete;
+  }
+
+  &[open]::details-content {
+    height: auto;
+  }
+
+  &[open] .chevron {
+    transform: rotate(90deg);
+  }
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 4px;
+  border-radius: $radius-sm;
+  color: $color-text;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    color: $color-primary-strong;
+  }
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform $transition-base;
+}
+
+.answer {
+  padding: 0 4px 20px;
+  color: $color-text-muted;
+}
+
+.footer {
+  align-items: center;
+  margin-top: 32px;
+}

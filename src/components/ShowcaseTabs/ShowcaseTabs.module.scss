@@ -1,0 +1,83 @@
+@use '../../styles/tokens' as *;
+
+.wrapper {
+  @include container;
+
+  margin-top: 16px;
+}
+
+.tabs {
+  display: flex;
+  margin-inline: -$gutter-mobile;
+  padding: 2px $gutter-mobile;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include from(md) {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.item {
+  flex: 1 0 auto;
+
+  @include from(md) {
+    flex: 1 1 0;
+  }
+
+  & + & {
+    margin-left: -1px;
+  }
+}
+
+.tab {
+  position: relative;
+  width: 100%;
+  min-width: 120px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid $color-border;
+  background-color: $color-white;
+  color: $color-text;
+  font-size: 1rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    background-color $transition-fast;
+
+  @include from(md) {
+    min-width: 0;
+    padding-inline: 8px;
+    font-size: 0.875rem;
+  }
+
+  @include from(lg) {
+    font-size: 0.9375rem;
+  }
+
+  &:hover {
+    background-color: $color-surface;
+    color: $color-primary;
+  }
+
+  &:active {
+    background-color: $color-divider;
+  }
+
+  &:focus-visible {
+    z-index: 1;
+    outline-offset: -2px;
+  }
+
+  &[aria-pressed='true'] {
+    color: $color-primary;
+    font-weight: 600;
+  }
+}

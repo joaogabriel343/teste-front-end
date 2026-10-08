@@ -1,0 +1,111 @@
+@use '../../styles/tokens' as *;
+
+@include motion-keyframes;
+
+.section {
+  @include container;
+
+  padding-block: 24px;
+
+  @include from(md) {
+    padding-block: 40px;
+  }
+}
+
+.list {
+  display: grid;
+  gap: 16px;
+
+  @include from(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  @include from(xl) {
+    gap: 12px;
+  }
+}
+
+.banner {
+  @include reveal-on-scroll;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 240px;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  background-color: $color-text-strong;
+  isolation: isolate;
+
+  @include from(lg) {
+    min-height: 350px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 35%) 100%);
+  }
+
+  &:hover .image {
+    transform: scale(1.04);
+  }
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 340px;
+  padding: 24px;
+  color: $color-white;
+
+  @include from(lg) {
+    gap: 12px;
+    padding: 44px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+
+  @include from(lg) {
+    font-size: 2.5rem;
+  }
+}
+
+.description {
+  font-size: 1rem;
+}
+
+.cta {
+  @include accent-button;
+
+  min-width: 144px;
+  min-height: 48px;
+  margin-top: 20px;
+  padding-inline: 28px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  &:focus-visible {
+    outline-color: $color-white;
+  }
+}

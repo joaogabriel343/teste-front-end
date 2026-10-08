@@ -1,0 +1,65 @@
+@use '../styles/tokens' as *;
+
+.sectionTitle {
+  margin-bottom: 16px;
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.departmentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.department {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 12px;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+  color: $color-text;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary-strong;
+    transform: translateY(-2px);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 1px solid $color-border;
+  border-radius: 999px;
+  color: $color-text;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:hover {
+    border-color: $color-primary-strong;
+    color: $color-primary-strong;
+  }
+}

@@ -1,0 +1,50 @@
+@use '../../styles/tokens' as *;
+
+.favoriteButton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid $color-divider;
+  border-radius: 50%;
+  background-color: $color-white;
+  color: $color-text;
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    border-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary-strong;
+  }
+
+  &:active {
+    transform: scale(0.92);
+  }
+
+  &[aria-pressed='true'] {
+    border-color: $color-primary;
+    color: $color-primary-strong;
+
+    svg {
+      animation: heart-pop 450ms $ease-out;
+    }
+  }
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

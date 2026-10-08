@@ -1,0 +1,53 @@
+@use '../../styles/tokens' as *;
+
+@include motion-keyframes;
+
+.showcase {
+  @include reveal-on-scroll;
+
+  padding-block: 32px 16px;
+  scroll-margin-top: 16px;
+
+  @include from(md) {
+    padding-block: 48px 24px;
+  }
+}
+
+.viewAll {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: $radius-sm;
+  color: $color-text;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-hover;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:active {
+    color: $color-primary-active;
+  }
+}
+
+.feedback {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-block: 48px;
+  color: $color-text;
+  text-align: center;
+}
+
+.feedbackButton {
+  @include primary-button;
+
+  border-radius: $radius-md;
+  text-transform: none;
+}

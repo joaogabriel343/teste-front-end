@@ -1,0 +1,166 @@
+@use '../../styles/tokens' as *;
+
+.dialog {
+  width: calc(100% - 2 * #{$gutter-mobile});
+  max-width: 766px;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background-color: $color-white;
+  color: $color-text;
+  box-shadow: $shadow-modal;
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transition:
+    opacity $transition-base,
+    transform $transition-base,
+    overlay $transition-base allow-discrete,
+    display $transition-base allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    transform: none;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+    }
+  }
+
+  &::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition:
+      background-color $transition-base,
+      overlay $transition-base allow-discrete,
+      display $transition-base allow-discrete;
+  }
+
+  &[open]::backdrop {
+    background-color: rgb(0 0 0 / 60%);
+
+    @starting-style {
+      background-color: rgb(0 0 0 / 0%);
+    }
+  }
+}
+
+.content {
+  position: relative;
+  display: grid;
+  gap: 24px;
+  padding: 56px 20px 28px;
+
+  @include from(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: 32px;
+    padding: 48px 56px 44px 40px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: none;
+  color: $color-text;
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-surface;
+    color: $color-primary;
+  }
+
+  &:active {
+    background-color: $color-divider;
+  }
+}
+
+.imageWrapper {
+  display: grid;
+  place-items: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name {
+  color: $color-text;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.price {
+  margin-top: 4px;
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.description {
+  margin-top: 24px;
+  color: $color-text-muted;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.detailsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 4px;
+  border-radius: $radius-sm;
+  color: $color-primary;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.buyButton {
+  @include accent-button;
+
+  flex: 1 1 160px;
+  max-width: 220px;
+  min-height: 40px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}

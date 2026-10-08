@@ -1,0 +1,62 @@
+@use '../styles/tokens' as *;
+
+.content {
+  margin-top: 24px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 16px;
+  border-bottom: 1px solid $color-divider;
+
+  &:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.image {
+  width: 64px;
+  height: auto;
+  border: 1px solid $color-divider;
+  border-radius: $radius-md;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemName {
+  color: $color-text;
+  font-weight: 500;
+}
+
+.itemTotal {
+  color: $color-text;
+  font-weight: 700;
+}
+
+.details {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+
+  dt {
+    color: $color-text-muted;
+    font-size: 0.8125rem;
+  }
+
+  dd {
+    color: $color-text;
+    overflow-wrap: anywhere;
+  }
+}

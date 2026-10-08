@@ -1,0 +1,89 @@
+@use '../styles/tokens' as *;
+
+.product {
+  display: grid;
+  gap: 32px;
+
+  @include from(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+.imageWrapper {
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+.image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.price {
+  color: $color-text;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.installment {
+  margin-top: 4px;
+  color: $color-text;
+  font-size: 0.875rem;
+}
+
+.shipping {
+  margin-top: 8px;
+  color: $color-primary;
+  font-size: 0.875rem;
+}
+
+.description {
+  margin-top: 24px;
+  color: $color-text-muted;
+}
+
+.descriptionTitle {
+  margin-bottom: 4px;
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.buyButton {
+  @include accent-button;
+
+  flex: 1 1 160px;
+  max-width: 240px;
+  min-height: 44px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.loading {
+  padding-block: 64px;
+  color: $color-text-muted;
+  text-align: center;
+}

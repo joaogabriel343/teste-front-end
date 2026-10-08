@@ -1,0 +1,33 @@
+@use '../../styles/tokens' as *;
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid $color-danger;
+  border-radius: $radius-md;
+  animation: confirm-enter $transition-base both;
+}
+
+.question {
+  color: $color-text;
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@keyframes confirm-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

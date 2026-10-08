@@ -1,0 +1,101 @@
+@use '../../styles/tokens' as *;
+
+@include motion-keyframes;
+
+$track-gap-mobile: 16px;
+$track-gap-desktop: 18px;
+
+.carousel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  max-width: 1392px;
+  margin-inline: auto;
+
+  @include from(md) {
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    column-gap: 8px;
+    padding-inline: $gutter-mobile;
+  }
+}
+
+.arrow {
+  display: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: $color-white;
+  color: $color-text;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    box-shadow $transition-fast,
+    opacity $transition-fast;
+
+  @include from(md) {
+    display: grid;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-primary;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 25%);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.94);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.track {
+  display: grid;
+  grid-auto-columns: 76%;
+  grid-auto-flow: column;
+  gap: $track-gap-mobile;
+  padding: 16px $gutter-mobile 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: $gutter-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include from(sm) {
+    grid-auto-columns: calc((100% - #{$track-gap-mobile}) / 2);
+  }
+
+  @include from(md) {
+    padding-inline: 7px;
+    scroll-padding-inline: 7px;
+  }
+
+  @include from(lg) {
+    grid-auto-columns: calc((100% - 2 * #{$track-gap-desktop}) / 3);
+    gap: $track-gap-desktop;
+  }
+
+  @include from(xl) {
+    grid-auto-columns: calc((100% - 3 * #{$track-gap-desktop}) / 4);
+  }
+}
+
+.item {
+  @include rise-in;
+
+  scroll-snap-align: start;
+}
+
+.skeleton {
+  @include skeleton-block(480px);
+}

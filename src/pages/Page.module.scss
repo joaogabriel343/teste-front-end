@@ -1,0 +1,109 @@
+@use '../styles/tokens' as *;
+
+.page {
+  @include container;
+
+  padding-bottom: 48px;
+
+  @include from(md) {
+    padding-bottom: 64px;
+  }
+}
+
+.pageTop {
+  @include container;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel {
+  padding: 20px;
+  border: 1px solid $color-divider;
+  border-radius: $radius-lg;
+  background-color: $color-white;
+
+  @include from(md) {
+    padding: 28px;
+  }
+}
+
+.panelTitle {
+  color: $color-text;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.twoColumns {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 32px;
+  }
+}
+
+.formGrid {
+  display: grid;
+  gap: 16px;
+
+  @include from(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fullRow {
+  @include from(md) {
+    grid-column: 1 / -1;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.muted {
+  color: $color-text-muted;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 72ch;
+
+  h2 {
+    color: $color-text;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin-top: 8px;
+    color: $color-text;
+  }
+}
+
+.successBox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid $color-success;
+  border-radius: $radius-md;
+  background-color: $color-success-surface;
+  color: $color-success;
+  font-weight: 500;
+}
+
+.notFound {
+  padding-top: 48px;
+}

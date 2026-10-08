@@ -1,0 +1,142 @@
+@use '../../styles/tokens' as *;
+
+.header {
+  background-color: $color-white;
+  view-transition-name: site-header;
+}
+
+.main {
+  @include container;
+
+  display: grid;
+  grid-template-areas:
+    'menu logo shortcuts'
+    'search search search';
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px 4px;
+  padding-block: 12px;
+
+  @include from(lg) {
+    grid-template-areas: 'logo search shortcuts';
+    grid-template-columns: auto minmax(0, 627px) auto;
+    justify-content: space-between;
+    gap: 32px;
+    padding-block: 12px;
+  }
+}
+
+.menuButton {
+  grid-area: menu;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-sm;
+  background: none;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-surface;
+  }
+
+  &:active {
+    background-color: $color-divider;
+  }
+
+  @include from(lg) {
+    display: none;
+  }
+}
+
+.logoLink {
+  grid-area: logo;
+  justify-self: start;
+  border-radius: $radius-sm;
+  text-decoration: none;
+}
+
+.search {
+  grid-area: search;
+}
+
+.shortcuts {
+  grid-area: shortcuts;
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  @include from(md) {
+    gap: 8px;
+  }
+
+  @include from(lg) {
+    gap: 22px;
+  }
+}
+
+.shortcut {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 44px;
+  border-radius: $radius-sm;
+  color: $color-text;
+  transition:
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: $color-primary-strong;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    color: $color-primary-active;
+    transform: translateY(0) scale(0.92);
+  }
+
+  &[aria-current='page'] {
+    color: $color-primary-strong;
+  }
+
+  @include from(md) {
+    width: 40px;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 4px;
+  border-radius: 9px;
+  background-color: $color-primary-strong;
+  color: $color-white;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1;
+  animation: badge-pop 400ms $ease-out both;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.4);
+  }
+
+  60% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

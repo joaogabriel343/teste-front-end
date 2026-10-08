@@ -1,0 +1,156 @@
+@use '../../styles/tokens' as *;
+
+@include motion-keyframes;
+
+.newsletter {
+  margin-top: 40px;
+  scroll-margin-top: 16px;
+  background-color: $color-navy;
+  color: $color-white;
+}
+
+.inner {
+  @include container;
+  @include reveal-on-scroll;
+
+  display: grid;
+  gap: 24px;
+  padding-block: 40px;
+
+  @include from(xl) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    align-items: center;
+    gap: 48px;
+    padding-block: 48px;
+  }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.text {
+  margin-top: 8px;
+  font-size: 0.875rem;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.fields {
+  display: grid;
+  gap: 12px;
+
+  @include from(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: $color-white;
+  color: $color-text;
+  font-size: 0.875rem;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:hover {
+    border-color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 2px;
+  }
+
+  &:user-invalid {
+    border-color: $color-text-strong;
+    box-shadow: inset 0 0 0 1px $color-text-strong;
+  }
+}
+
+.submit {
+  height: 40px;
+  padding: 0 40px;
+  border: 0;
+  border-radius: 6px;
+  background-color: $color-accent;
+  color: $color-navy;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background-color: $color-accent-hover;
+  }
+
+  &:active {
+    background-color: $color-accent-active;
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 2px;
+  }
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+
+  label {
+    cursor: pointer;
+  }
+}
+
+.termsLink {
+  border-radius: $radius-sm;
+  color: $color-white;
+  font-weight: 600;
+  text-underline-offset: 3px;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    outline-color: $color-white;
+  }
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: $color-accent;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 2px;
+  }
+}
+
+.feedback {
+  min-height: 1.5em;
+  font-weight: 500;
+  font-size: 0.875rem;
+}

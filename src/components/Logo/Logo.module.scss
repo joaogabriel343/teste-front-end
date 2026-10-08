@@ -1,0 +1,35 @@
+@use '../../styles/tokens' as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.12em;
+  color: $color-navy;
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  isolation: isolate;
+
+  @include from(md) {
+    font-size: 1.625rem;
+  }
+}
+
+.mark {
+  position: relative;
+  color: $color-white;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -0.14em;
+    z-index: -1;
+    width: 1.45em;
+    height: 1.45em;
+    border-radius: 50%;
+    background-color: $color-accent;
+    transform: translateY(-50%);
+  }
+}
